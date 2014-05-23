@@ -109,8 +109,8 @@ public class MainActivity extends Activity  {
                 String value = resp.optString("x:a", "");
                 String redirect = "http://" + domain + "/" + hash;
                 hint.setText("上传成功! " + hash);
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(redirect));
-                startActivity(intent);
+                //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(redirect));
+                //startActivity(intent);
             }
 
             @Override
