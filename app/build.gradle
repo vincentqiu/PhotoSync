@@ -63,9 +63,7 @@ apt {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.+'
-}
-dependencies {
-    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.koushikdutta.ion:ion:1.2.4'
 }
 
 

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -26,6 +27,11 @@ import org.junit.Test;
 import com.qiniu.auth.JSONObjectRet;
 import com.qiniu.io.IO;
 import com.qiniu.io.PutExtra;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 
 
@@ -35,30 +41,41 @@ public class MainActivity extends Activity  {
     public static final int PICK_PICTURE_RESUMABLE = 0;
 
     // @gist upload_arg
-    public static String bucketName = "<bucketName>";
+    public static String bucketName = "photosync";
     public static String domain = bucketName + ".qiniudn.com";
     // upToken 这里需要自行获取. SDK 将不实现获取过程. 当token过期后才再获取一遍
-    public String uptoken = "<token>";
+    public String uptoken = "";
+
     // @endgist
 
 
     @ViewById
     TextView hint;
 
-    @ViewById
-    Button btnUpload;
+    //@ViewById
+    //Button btnUpload;
 
-    @ViewById
-    Button  btnResumableUpload;
+    //@ViewById
+    //Button  btnResumableUpload;
 
+    @Background
+    void getToken(){
+        String url="http://api.sacabook.com/qiniuphotosync/getToken.php";
+        String token = "";
+        HttpGet get=new HttpGet(url);
+        HttpClient client=new DefaultHttpClient();
+        try {
+            HttpResponse response=client.execute(get);
+            token =  EntityUtils.toString(response.getEntity());
 
-    /**
-     * 初始化控件
-     */
-    private void initWidget() {
-/*        btnUpload.setOnClickListener(this);
-        btnResumableUpload.setOnClickListener(this);*/
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.err.println(e.toString());
+        }
+
+        uptoken = token;
     }
+
 
     // @gist upload
     boolean uploading = false;
@@ -67,6 +84,8 @@ public class MainActivity extends Activity  {
      * @param uri
      */
     private void doUpload(Uri uri) {
+
+
         if (uploading) {
             hint.setText("上传中，请稍后");
             return;
@@ -107,9 +126,7 @@ public class MainActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.err.println("app create");
-        initWidget();
-        System.err.println("event bind");
+        getToken();
 
     }
 
@@ -134,32 +151,20 @@ public class MainActivity extends Activity  {
     }
 
 
-    @Click(R.id.btnUpload)
+    @Click
     void btnUploadClicked() {
         System.err.println("click trigger!");
+        System.err.println("uptoken: " +uptoken);
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, PICK_PICTURE_RESUMABLE);
         return;
     }
 
-    @Click(R.id.btnResumableUpload)
+    @Click
     void btnResumableUploadClicked(View v){
         startActivity(new Intent(this, MyResumableActivity_.class));
     }
 
-/*    @Override
-    public void onClick(View view) {
-        System.err.println("click trigger!");
-        if (view.equals(btnUpload)) {
-            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(i, PICK_PICTURE_RESUMABLE);
-            return;
-        }
-        if (view.equals(btnResumableUpload)) {
-            //startActivity(new Intent(this, MyResumableActivity.class));
-            return;
-        }
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
