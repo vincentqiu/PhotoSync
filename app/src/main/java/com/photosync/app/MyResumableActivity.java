@@ -182,11 +182,15 @@ public class MyResumableActivity extends ActionBarActivity {
     }
 
     public void selectFile() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        i.setType("image/*");
+        //startActivityForResult(i, 0);
+        //intent.setType("*/*");
+        //intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
-            startActivityForResult(Intent.createChooser(intent, "请选择一个要上传的文件"), 1);
+            //startActivityForResult(Intent.createChooser(intent, "请选择一个要上传的文件"), 1);
+            startActivityForResult(i, 0);
         } catch (android.content.ActivityNotFoundException ex) {
             ex.printStackTrace();
         }

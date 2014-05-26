@@ -156,7 +156,10 @@ public class MainActivity extends Activity  {
         System.err.println("click trigger!");
         System.err.println("uptoken: " +uptoken);
         Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        i.setType("image/*");
         startActivityForResult(i, PICK_PICTURE_RESUMABLE);
+
+
         return;
     }
 
