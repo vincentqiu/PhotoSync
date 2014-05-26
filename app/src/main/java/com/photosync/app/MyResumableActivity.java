@@ -12,8 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qiniu.auth.JSONObjectRet;
+import com.qiniu.io.IO;
 import com.qiniu.resumableio.PutExtra;
 import com.qiniu.resumableio.ResumableIO;
+
+import org.androidannotations.annotations.Background;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,13 +41,17 @@ public class MyResumableActivity extends ActionBarActivity {
     int taskId = -1;
     Uri uploadUri;
     PutExtra mExtra;
+    public String uptoken = "";
 
     @ViewById
     Button  start;
+
     @ViewById
     Button  stop;
+
     @ViewById
     TextView    hint;
+
     @ViewById
     ProgressBar pb;
 
@@ -72,6 +84,8 @@ public class MyResumableActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resumable);
+        pb.setMax(100);
+        getToken();
     }
 
 
@@ -95,14 +109,31 @@ public class MyResumableActivity extends ActionBarActivity {
     }
 
 
+    @Background
+    void getToken(){
+        String url="http://api.sacabook.com/qiniuphotosync/getToken.php";
+        String token = "";
+        HttpGet get=new HttpGet(url);
+        HttpClient client=new DefaultHttpClient();
+        try {
+            HttpResponse response=client.execute(get);
+            token =  EntityUtils.toString(response.getEntity());
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.err.println(e.toString());
+        }
+
+        uptoken = token;
+    }
 
     public void doResumableUpload(final Uri uri, PutExtra extra) {
         hint.setText("连接中");
-        String key = null;
-        String token = "<token>";
+        String key = IO.UNDEFINED_KEY; // 自动生成key
         extra.params = new HashMap<String, String>();
         extra.params.put("x:a", "bb");
-        taskId = ResumableIO.putFile(this, token, key, uri, extra, new JSONObjectRet() {
+        uploadUri = uri;
+        taskId = ResumableIO.putFile(this, uptoken, key, uri, extra, new JSONObjectRet() {
             @Override
             public void onSuccess(JSONObject obj) {
                 hint.setText("上传成功: " + obj.optString("key", ""));
@@ -160,7 +191,5 @@ public class MyResumableActivity extends ActionBarActivity {
             ex.printStackTrace();
         }
     }
-
-
 
 }
