@@ -37,4 +37,11 @@
         android:id="@+id/btnResumableUpload"
         android:layout_alignParentRight="true" android:layout_alignParentBottom="true"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多图片上传"
+        android:id="@+id/btnMultipleUpload"
+        android:layout_alignParentRight="false" android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

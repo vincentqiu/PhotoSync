@@ -3,8 +3,7 @@
     package="com.photosync.app"
     android:installLocation="auto"
     android:versionCode="1"
-    android:versionName="1.0"
-    >
+    android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,9 +12,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name="UILApplication"
+        >
         <activity
-            android:name=".MainActivity_"
+            android:name="com.photosync.app.MainActivity_"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyResumableActivity_"
+            android:name="com.photosync.app.MyResumableActivity_"
             android:label="@string/title_activity_my_resumable" >
+        </activity>
+        <activity
+            android:name="com.photosync.app.MutipleUpload_"
+            android:label="MultipleUpload" >
         </activity>
     </application>
 

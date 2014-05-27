@@ -168,6 +168,11 @@ public class MainActivity extends Activity  {
         startActivity(new Intent(this, MyResumableActivity_.class));
     }
 
+    @Click
+    void btnMultipleUploadClicked(View v){
+        startActivity(new Intent(this, MutipleUpload_.class));
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
