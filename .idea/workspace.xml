@@ -121,8 +121,8 @@
       <file leaf-file-name="MutipleUpload.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/photosync/app/MutipleUpload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8366972" vertical-offset="1194" max-vertical-offset="2024">
-              <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.15045871" vertical-offset="1194" max-vertical-offset="2024">
+              <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#ImageAdapter#0;class#MutipleUpload#0" expanded="false" />
@@ -1914,7 +1914,11 @@
       <created>1401193774612</created>
       <updated>1401193774612</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="multiple photo upload">
+      <created>1401241792725</created>
+      <updated>1401241792725</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2298,10 +2302,10 @@
         <state vertical-scroll-proportion="-13.7" vertical-offset="535" max-vertical-offset="1166">
           <caret line="43" column="42" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="42" />
           <folding>
-            <element signature="e#231#266#0" expanded="true" />
-            <element signature="e#292#327#0" expanded="true" />
-            <element signature="e#351#384#0" expanded="true" />
-            <element signature="e#411#444#0" expanded="true" />
+            <element signature="e#231#266#0" expanded="false" />
+            <element signature="e#292#327#0" expanded="false" />
+            <element signature="e#351#384#0" expanded="false" />
+            <element signature="e#411#444#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2391,8 +2395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/photosync/app/MutipleUpload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8366972" vertical-offset="1194" max-vertical-offset="2024">
-          <caret line="75" column="30" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.15045871" vertical-offset="1194" max-vertical-offset="2024">
+          <caret line="58" column="10" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#ImageAdapter#0;class#MutipleUpload#0" expanded="false" />
