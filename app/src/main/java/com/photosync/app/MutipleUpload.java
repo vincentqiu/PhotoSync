@@ -26,7 +26,6 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -55,7 +54,7 @@ public class MutipleUpload extends BaseActivity {
 
         final String[] columns = { MediaStore.Images.Media.DATA, MediaStore.Images.Media._ID };
         final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
-        Cursor imagecursor = managedQuery(
+        Cursor imagecursor = getContentResolver().query(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,
                 null, orderBy + " DESC");
 
@@ -70,17 +69,29 @@ public class MutipleUpload extends BaseActivity {
         }
 
         options = new DisplayImageOptions.Builder()
-                .showStubImage(R.drawable.stub_image)
+                .showImageOnLoading(R.drawable.stub_image)
                 .showImageForEmptyUri(R.drawable.image_for_empty_url)
-                .cacheInMemory()
-                .cacheOnDisc()
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
                 .build();
 
-        imageAdapter = new ImageAdapter(this, imageUrls);
-        gridview.setAdapter(imageAdapter);
+
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        imageAdapter = new ImageAdapter(this, imageUrls);
+        gridview.setAdapter(imageAdapter);
+    }
+
+    @Click
+    void btnChoosePhotosClicked(){
+
+        System.out.println("photos clicked");
+
+    }
 
     public class ImageAdapter extends BaseAdapter {
 
