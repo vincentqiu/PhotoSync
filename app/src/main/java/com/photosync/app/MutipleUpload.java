@@ -2,7 +2,7 @@ package com.photosync.app;
 
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
-
+import android.app.ActionBar;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -127,6 +128,13 @@ public class MutipleUpload extends BaseActivity {
         getToken();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mutiple_upload, menu);
+        return true;
+    }
+
     // @gist upload
     boolean uploading = false;
     /**
@@ -160,8 +168,6 @@ public class MutipleUpload extends BaseActivity {
                 String value = resp.optString("x:a", "");
                 String redirect = "http://" + domain + "/" + hash;
                 System.out.println("上传成功! " + hash);
-                //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(redirect));
-                //startActivity(intent);
             }
 
             @Override

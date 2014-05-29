@@ -4,6 +4,7 @@
     <string name="app_name">PhotoSync</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_about">about</string>
     <string name="title_activity_my_resumable">MyResumableActivity</string>
     <string name="title_activity_mutiple_upload">MutipleUpload</string>
 

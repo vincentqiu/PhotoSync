@@ -29,6 +29,7 @@ dependencies {
     //testCompile 'org.robolectric:robolectric:2.1.+'
     //testCompile 'com.squareup:fest-android:1.0.+'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1@jar'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }
 
 android {
