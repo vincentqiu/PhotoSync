@@ -85,6 +85,11 @@ public class MyResumableActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resumable);
         pb.setMax(100);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
         getToken();
     }
 

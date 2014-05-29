@@ -85,7 +85,7 @@ public class MainActivity extends Activity  {
      */
     private void doUpload(Uri uri) {
 
-
+        System.out.println(uri.toString());
         if (uploading) {
             hint.setText("上传中，请稍后");
             return;
@@ -126,8 +126,13 @@ public class MainActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getToken();
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        getToken();
     }
 
 
