@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.photosync.app.MutipleUpload"
     >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/action_upload"
+        android:title="@string/action_upload"
         android:orderInCategory="1"
         app:showAsAction="ifRoom|withText" />
     <item android:id="@+id/action_about"

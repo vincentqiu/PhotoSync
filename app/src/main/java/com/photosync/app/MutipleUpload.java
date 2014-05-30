@@ -15,6 +15,7 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -135,6 +136,29 @@ public class MutipleUpload extends BaseActivity {
         return true;
     }
 
+    @Override
+    public boolean  onOptionsItemSelected(MenuItem  item){
+
+        switch (item.getItemId()) {
+            case R.id.action_upload:
+                System.out.println("photos clicked");
+
+                ArrayList<String> checkList;
+                checkList = imageAdapter.getCheckedItems();
+                for(int i=0; i<checkList.size();i++){
+                    System.out.println(checkList.get(i));
+                    Uri uri = Uri.fromFile(new File(checkList.get(i)));
+                    doUpload(uri);
+                }
+                return true;
+            case R.id.action_about:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     // @gist upload
     boolean uploading = false;
     /**
@@ -178,20 +202,6 @@ public class MutipleUpload extends BaseActivity {
         });
     }
 
-    @Click
-    void btnChoosePhotosClicked(){
-
-        System.out.println("photos clicked");
-
-        ArrayList<String> checkList;
-        checkList = imageAdapter.getCheckedItems();
-        for(int i=0; i<checkList.size();i++){
-            System.out.println(checkList.get(i));
-            Uri uri = Uri.fromFile(new File(checkList.get(i)));
-            doUpload(uri);
-        }
-
-    }
 
     public class ImageAdapter extends BaseAdapter {
 
