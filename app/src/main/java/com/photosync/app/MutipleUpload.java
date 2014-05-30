@@ -187,11 +187,20 @@ public class MutipleUpload extends BaseActivity {
 
             @Override
             public void onSuccess(JSONObject resp) {
-                uploading = false;
+                //uploading = false;
                 String hash = resp.optString("hash", "");
                 String value = resp.optString("x:a", "");
                 String redirect = "http://" + domain + "/" + hash;
                 System.out.println("上传成功! " + hash);
+
+                //Toasts notification
+                Context context = getApplicationContext();
+                CharSequence text = "上传成功！" ;
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
             }
 
             @Override
