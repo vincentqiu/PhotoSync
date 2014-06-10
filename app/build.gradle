@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:0.11.+'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.1'
         //classpath 'com.squareup.gradle:gradle-android-test-plugin:0.9.+'
 
@@ -37,7 +37,7 @@ dependencies {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.3'
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         minSdkVersion 10
@@ -69,6 +69,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.koushikdutta.ion:ion:1.2.4'
+    compile 'com.sothree.slidinguppanel:library:+'
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
